@@ -11,12 +11,9 @@ const {
   isDirectoryEmpty,
   getDirectoryFilesCount,
   getDesktopDirectory,
-  getBackupDirectory,
+  getBackupPath,
+  getLastBackupId,
 } = require('./utils');
-
-// TODO: Account for all file system errors (e.g. permission denial)
-// TODO: Investigate feasibility of avoiding using moving files (& linking instead)
-// TODO: Decide on indexing strategy (e.g. UNIX timestamps, incremental integers)
 
 program
   .version(version)
@@ -50,34 +47,36 @@ program
     }
   });
 
-// TODO: Add backup listing functionality
-
 program
   .command('backup [id]')
   .description('Backup Desktop files')
   .action(id => {
     const backupId = id ? id : getTimestamp();
     const desktopDirectory = getDesktopDirectory();
-    const backupDirectory = getBackupDirectory(backupId);
+    const backupDirectory = getBackupPath(backupId);
 
     if (isDirectoryEmpty(desktopDirectory)) {
       shell.echo('Cannot backup empty Desktop');
       shell.exit(1);
     }
 
+    const desktopFilesCount = getDirectoryFilesCount(desktopDirectory);
+    const desktopFilesWording = pluralize(desktopFilesCount, 'file');
+
     shell.mkdir('-p', backupDirectory);
     shell.mv(constructPath(desktopDirectory, '*'), backupDirectory);
-    shell.echo(`Stored Desktop backup: ${backupId}`);
+    shell.echo(
+      `Stored ${desktopFilesCount} ${desktopFilesWording} in backup: ${backupId}`,
+    );
   });
 
-// TODO: Add restore last functionality
-
 program
-  .command('restore <backupId>')
+  .command('restore [id]')
   .description('Restore Desktop backup')
-  .action(backupId => {
+  .action(id => {
+    const backupId = id ? id : getLastBackupId();
     const desktopDirectory = getDesktopDirectory();
-    const backupDirectory = getBackupDirectory(backupId);
+    const backupDirectory = getBackupPath(backupId);
 
     if (!isDirectoryEmpty(desktopDirectory)) {
       shell.echo('Cannot overwrite non-empty Desktop');
@@ -91,11 +90,9 @@ program
 
     shell.mv(constructPath(backupDirectory, '*'), desktopDirectory);
     shell.echo(
-      `Restored ${backupFilesCount} ${backupFilesWording} from backup`,
+      `Restored ${backupFilesCount} ${backupFilesWording} from backup: ${backupId}`,
     );
   });
-
-// TODO: Add quick note-taking functionality
 
 program.parse(process.argv);
 
