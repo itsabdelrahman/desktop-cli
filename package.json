@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "commander": "^2.15.1",
+    "prompts": "^0.1.8",
     "shelljs": "^0.8.2"
   },
   "homepage": "https://github.com/ar-maged/desktop-cli#readme",
