@@ -1,26 +1,16 @@
-#! /usr/bin/env node
-'use strict';
+#!/usr/bin/env node
 
-const os = require('os');
 const shell = require('shelljs');
 const prompts = require('prompts');
 const program = require('commander');
-const { description, version } = require('./package.json');
-
-// TODO: Refactor into dedicated files
-const getTimestamp = () => Math.round(new Date() / 1000);
-const getHomeDirectory = () => os.homedir();
-const getDesktopDirectory = () => [getHomeDirectory(), 'Desktop'].join('/');
-const getRepositoryPath = () =>
-  [getHomeDirectory(), 'Desktop-CLI', 'backups'].join('/');
-const getDirectoryFilesCount = path => shell.ls(path).length;
-const isDirectoryEmpty = path => getDirectoryFilesCount(path) === 0;
-const constructBackupDirectory = backupId =>
-  backupId
-    ? [getRepositoryPath(), backupId].join('/')
-    : [getRepositoryPath(), getTimestamp()].join('/');
-const ifElse = (ifCondition, thenValue, elseValue) =>
-  ifCondition ? thenValue : elseValue;
+const { description, version } = require('../package.json');
+const {
+  ifElse,
+  isDirectoryEmpty,
+  getDirectoryFilesCount,
+  getDesktopDirectory,
+  getBackupDirectory,
+} = require('./utils');
 
 // TODO: Account for all file system errors (e.g. permission denial)
 // TODO: Investigate feasibility of avoiding using moving files (& linking instead)
@@ -71,7 +61,7 @@ program
   .description('Backup Desktop files')
   .action(() => {
     const desktopDirectory = getDesktopDirectory();
-    const backupDirectory = constructBackupDirectory();
+    const backupDirectory = getBackupDirectory();
 
     if (isDirectoryEmpty(desktopDirectory)) {
       shell.echo('Cannot backup empty Desktop');
@@ -91,7 +81,7 @@ program
   .description('Restore Desktop backup')
   .action(backupId => {
     const desktopDirectory = getDesktopDirectory();
-    const backupDirectory = constructBackupDirectory(backupId);
+    const backupDirectory = getBackupDirectory(backupId);
 
     if (!isDirectoryEmpty(desktopDirectory)) {
       shell.echo('Cannot overwrite non-empty Desktop');
