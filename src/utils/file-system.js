@@ -5,6 +5,8 @@ const { pipe } = require('./functional');
 
 const constructPath = (...pathComponents) => pathComponents.join('/');
 
+const doesFileExist = path => fs.existsSync(path);
+
 const isDirectoryEmpty = path => getDirectoryFilesCount(path) === 0;
 
 const getDirectoryFilesCount = path => shell.ls(path).length;
@@ -47,6 +49,7 @@ const getLastBackupId = () => {
 
 module.exports = {
   constructPath,
+  doesFileExist,
   isDirectoryEmpty,
   getDirectoryFilesCount,
   getFileCreationTime,

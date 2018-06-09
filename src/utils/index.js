@@ -3,6 +3,7 @@ const { pluralize } = require('./linguistic');
 const { getTimestamp } = require('./time');
 const {
   constructPath,
+  doesFileExist,
   isDirectoryEmpty,
   getDirectoryFilesCount,
   getFileCreationTime,
@@ -20,6 +21,7 @@ module.exports = {
   pluralize,
   getTimestamp,
   constructPath,
+  doesFileExist,
   isDirectoryEmpty,
   getDirectoryFilesCount,
   getFileCreationTime,

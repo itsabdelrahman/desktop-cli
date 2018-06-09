@@ -8,6 +8,7 @@ const {
   pluralize,
   getTimestamp,
   constructPath,
+  doesFileExist,
   isDirectoryEmpty,
   getDirectoryFilesCount,
   getDesktopDirectory,
@@ -83,7 +84,15 @@ program
       shell.exit(1);
     }
 
-    // TODO: Check if backup exists
+    if (!doesFileExist(backupDirectory)) {
+      shell.echo(`Cannot find backup: ${backupId}`);
+      shell.exit(1);
+    }
+
+    if (isDirectoryEmpty(backupDirectory)) {
+      shell.echo('Cannot restore empty backup');
+      shell.exit(1);
+    }
 
     const backupFilesCount = getDirectoryFilesCount(backupDirectory);
     const backupFilesWording = pluralize(backupFilesCount, 'file');
