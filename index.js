@@ -21,26 +21,26 @@ program
   .usage('<command> [args]');
 
 program
-  .command('clear')
-  .description('')
+  .command('clean')
+  .description('Remove all files from Desktop')
   .action(async () => {
     const desktopDirectory = getDesktopDirectory();
 
     if (isDirectoryEmpty(desktopDirectory)) {
-      shell.echo('Cannot clear empty desktop');
+      shell.echo('Cannot clean empty Desktop');
       shell.exit(1);
     }
 
     const response = await prompts({
       type: 'confirm',
       name: 'value',
-      message: 'Are you sure you want to delete all desktop contents?',
+      message: 'Are you sure you want to remove all Desktop files?',
       initial: false,
     });
 
     if (response.value) {
       shell.rm('-rf', [desktopDirectory, '*'].join('/'));
-      shell.echo('Cleared desktop contents');
+      shell.echo('Cleared Desktop contents');
     }
   });
 
@@ -52,13 +52,13 @@ program
     const stashDirectory = constructStashDirectory();
 
     if (isDirectoryEmpty(desktopDirectory)) {
-      shell.echo('Cannot stash empty desktop');
+      shell.echo('Cannot stash empty Desktop');
       shell.exit(1);
     }
 
     shell.mkdir('-p', stashDirectory);
     shell.mv([desktopDirectory, '*'].join('/'), stashDirectory);
-    shell.echo('Saved desktop contents in ' + stashDirectory);
+    shell.echo('Saved Desktop contents in ' + stashDirectory);
   });
 
 program.parse(process.argv);
