@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "commander": "^2.15.1"
+    "commander": "^2.15.1",
+    "shelljs": "^0.8.2"
   },
   "homepage": "https://github.com/ar-maged/desktop-cli#readme",
   "repository": {
