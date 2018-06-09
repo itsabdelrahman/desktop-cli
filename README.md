@@ -10,8 +10,22 @@
 
 ## Usage
 
+#### Clean
+
 ```
-❯ # TODO
+❯ desktop-cli clean               # Remove all Desktop files
+```
+
+#### Backup
+
+```
+❯ desktop-cli backup [id]         # Create Desktop backup
+```
+
+#### Restore
+
+```
+❯ desktop-cli restore [id]        # Restore Desktop backup
 ```
 
 ## Thanks
