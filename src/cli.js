@@ -23,7 +23,7 @@ program
 
 program
   .command('clean')
-  .description('Remove all files from Desktop')
+  .description('Remove all Desktop files')
   .action(async () => {
     const desktopDirectory = getDesktopDirectory();
 
@@ -50,7 +50,7 @@ program
 
 program
   .command('backup [id]')
-  .description('Backup Desktop files')
+  .description('Create Desktop backup')
   .action(id => {
     const backupId = id ? id : getTimestamp();
     const desktopDirectory = getDesktopDirectory();
