@@ -5,8 +5,8 @@
   "author": "A.R. Maged <abdulrahman.maged95@gmail.com>",
   "license": "MIT",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "desktop-cli": "index.js"
   },
   "dependencies": {
     "commander": "^2.15.1",
