@@ -5,7 +5,8 @@ const prompts = require('prompts');
 const program = require('commander');
 const { description, version } = require('../package.json');
 const {
-  ifElse,
+  pluralize,
+  constructPath,
   isDirectoryEmpty,
   getDirectoryFilesCount,
   getDesktopDirectory,
@@ -41,16 +42,10 @@ program
 
     if (response.value) {
       const desktopFilesCount = getDirectoryFilesCount(desktopDirectory);
+      const desktopFilesWording = pluralize(desktopFilesCount, 'file');
 
-      shell.rm('-rf', [desktopDirectory, '*'].join('/'));
-
-      // TODO: Refactor pluralization
-      shell.echo(
-        desktopFilesCount +
-          ' Desktop file' +
-          ifElse(desktopFilesCount === 1, '', 's') +
-          ' removed',
-      );
+      shell.rm('-rf', constructPath(desktopDirectory, '*'));
+      shell.echo(`${desktopFilesCount} Desktop ${desktopFilesWording} removed`);
     }
   });
 
@@ -69,8 +64,8 @@ program
     }
 
     shell.mkdir('-p', backupDirectory);
-    shell.mv([desktopDirectory, '*'].join('/'), backupDirectory);
-    shell.echo('Stored Desktop backup in ' + backupDirectory);
+    shell.mv(constructPath(desktopDirectory, '*'), backupDirectory);
+    shell.echo(`Stored Desktop backup in ${backupDirectory}`);
   });
 
 // TODO: Add restore last functionality
@@ -91,15 +86,11 @@ program
     // TODO: Check if backup exists
 
     const backupFilesCount = getDirectoryFilesCount(backupDirectory);
-    shell.mv([backupDirectory, '*'].join('/'), desktopDirectory);
+    const backupFilesWording = pluralize(backupFilesCount, 'file');
 
-    // TODO: Refactor pluralization
+    shell.mv(constructPath(backupDirectory, '*'), desktopDirectory);
     shell.echo(
-      'Restored ' +
-        backupFilesCount +
-        ' file' +
-        ifElse(backupFilesCount === 1, '', 's') +
-        ' from backup',
+      `Restored ${backupFilesCount} ${backupFilesWording} from backup`,
     );
   });
 

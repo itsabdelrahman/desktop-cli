@@ -1,4 +1,5 @@
 const { ifElse } = require('./functional');
+const { pluralize } = require('./linguistic');
 const { getTimestamp } = require('./time');
 const {
   constructPath,
@@ -12,6 +13,7 @@ const {
 
 module.exports = {
   ifElse,
+  pluralize,
   getTimestamp,
   constructPath,
   isDirectoryEmpty,
