@@ -25,7 +25,7 @@ const getBackupPath = backupId =>
 
 const getBackupCreationTime = pipe(
   getBackupPath,
-  getFileCreationTime,
+  getFileCreationTime
 );
 
 const getLastBackupId = () => {
@@ -33,7 +33,7 @@ const getLastBackupId = () => {
 
   const backups = backupsIds.map(backupId => ({
     id: backupId,
-    createdAt: getBackupCreationTime(backupId),
+    createdAt: getBackupCreationTime(backupId)
   }));
 
   const lastBackup = backups.reduce((latestBackupYet, currentBackup) => {
@@ -58,5 +58,5 @@ module.exports = {
   getBackupsDirectory,
   getBackupPath,
   getBackupCreationTime,
-  getLastBackupId,
+  getLastBackupId
 };

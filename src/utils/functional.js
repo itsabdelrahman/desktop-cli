@@ -6,5 +6,5 @@ const pipe = (...funcs) => thing =>
 
 module.exports = {
   ifElse,
-  pipe,
+  pipe
 };

@@ -13,7 +13,7 @@ const {
   getDirectoryFilesCount,
   getDesktopDirectory,
   getBackupPath,
-  getLastBackupId,
+  getLastBackupId
 } = require('./utils');
 
 program
@@ -36,7 +36,7 @@ program
       type: 'confirm',
       name: 'value',
       message: 'Are you sure you want to remove all Desktop files?',
-      initial: true,
+      initial: true
     });
 
     if (response.value) {
@@ -67,7 +67,7 @@ program
     shell.mkdir('-p', backupDirectory);
     shell.mv(constructPath(desktopDirectory, '*'), backupDirectory);
     shell.echo(
-      `Stored ${desktopFilesCount} ${desktopFilesWording} in backup: ${backupId}`,
+      `Stored ${desktopFilesCount} ${desktopFilesWording} in backup: ${backupId}`
     );
   });
 
@@ -99,7 +99,7 @@ program
 
     shell.mv(constructPath(backupDirectory, '*'), desktopDirectory);
     shell.echo(
-      `Restored ${backupFilesCount} ${backupFilesWording} from backup: ${backupId}`,
+      `Restored ${backupFilesCount} ${backupFilesWording} from backup: ${backupId}`
     );
   });
 
