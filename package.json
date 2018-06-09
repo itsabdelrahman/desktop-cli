@@ -4,14 +4,19 @@
   "description": "",
   "author": "A.R. Maged <abdulrahman.maged95@gmail.com>",
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/cli.js",
   "bin": {
-    "desktop-cli": "index.js"
+    "desktop-cli": "src/cli.js"
   },
   "dependencies": {
     "commander": "^2.15.1",
     "prompts": "^0.1.8",
     "shelljs": "^0.8.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0"
   },
   "homepage": "https://github.com/ar-maged/desktop-cli#readme",
   "repository": {
