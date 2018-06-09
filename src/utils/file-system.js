@@ -1,6 +1,5 @@
 const os = require('os');
 const shell = require('shelljs');
-const { getTimestamp } = require('./time');
 
 const constructPath = (...pathComponents) => pathComponents.join('/');
 
@@ -16,9 +15,7 @@ const getBackupsDirectory = () =>
   constructPath(getHomeDirectory(), 'Desktop-CLI', 'backups');
 
 const getBackupDirectory = backupId =>
-  backupId
-    ? constructPath(getBackupsDirectory(), backupId)
-    : constructPath(getBackupsDirectory(), getTimestamp());
+  constructPath(getBackupsDirectory(), backupId);
 
 module.exports = {
   constructPath,

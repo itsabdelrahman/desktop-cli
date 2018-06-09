@@ -6,6 +6,7 @@ const program = require('commander');
 const { description, version } = require('../package.json');
 const {
   pluralize,
+  getTimestamp,
   constructPath,
   isDirectoryEmpty,
   getDirectoryFilesCount,
@@ -49,14 +50,15 @@ program
     }
   });
 
-// TODO: Add backup naming functionality
+// TODO: Add backup listing functionality
 
 program
-  .command('backup')
+  .command('backup [id]')
   .description('Backup Desktop files')
-  .action(() => {
+  .action(id => {
+    const backupId = id ? id : getTimestamp();
     const desktopDirectory = getDesktopDirectory();
-    const backupDirectory = getBackupDirectory();
+    const backupDirectory = getBackupDirectory(backupId);
 
     if (isDirectoryEmpty(desktopDirectory)) {
       shell.echo('Cannot backup empty Desktop');
@@ -65,11 +67,10 @@ program
 
     shell.mkdir('-p', backupDirectory);
     shell.mv(constructPath(desktopDirectory, '*'), backupDirectory);
-    shell.echo(`Stored Desktop backup in ${backupDirectory}`);
+    shell.echo(`Stored Desktop backup: ${backupId}`);
   });
 
 // TODO: Add restore last functionality
-// TODO: Add backup listing functionality
 
 program
   .command('restore <backupId>')
