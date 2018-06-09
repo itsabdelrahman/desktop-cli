@@ -12,6 +12,7 @@ const {
   isDirectoryEmpty,
   getDirectoryFilesCount,
   getDesktopDirectory,
+  getBackupsDirectory,
   getBackupPath,
   getLastBackupId
 } = require('./utils');
@@ -75,6 +76,11 @@ program
   .command('restore [id]')
   .description('Restore Desktop backup')
   .action(id => {
+    if (isDirectoryEmpty(getBackupsDirectory())) {
+      shell.echo('Cannot find previous backups');
+      shell.exit(1);
+    }
+
     const backupId = id ? id : getLastBackupId();
     const desktopDirectory = getDesktopDirectory();
     const backupDirectory = getBackupPath(backupId);
