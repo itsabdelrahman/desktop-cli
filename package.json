@@ -2,12 +2,15 @@
   "name": "desktop-cli",
   "version": "0.0.0",
   "description": "",
+  "author": "A.R. Maged <abdulrahman.maged95@gmail.com>",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "license": "MIT",
-  "author": "A.R. Maged <abdulrahman.maged95@gmail.com>",
+  "dependencies": {
+    "commander": "^2.15.1"
+  },
   "homepage": "https://github.com/ar-maged/desktop-cli#readme",
   "repository": {
     "type": "git",
