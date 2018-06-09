@@ -12,7 +12,7 @@ const {
   getBackupsDirectory,
   getBackupPath,
   getBackupCreationTime,
-  getLastBackupId,
+  getLastBackupId
 } = require('./file-system');
 
 module.exports = {
@@ -30,5 +30,5 @@ module.exports = {
   getBackupsDirectory,
   getBackupPath,
   getBackupCreationTime,
-  getLastBackupId,
+  getLastBackupId
 };
