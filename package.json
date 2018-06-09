@@ -1,6 +1,6 @@
 {
   "name": "desktop-cli",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Declutter your Desktop",
   "author": "A.R. Maged <abdulrahman.maged95@gmail.com>",
   "license": "MIT",
