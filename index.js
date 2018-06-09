@@ -3,6 +3,7 @@
 
 const os = require('os');
 const shell = require('shelljs');
+const prompts = require('prompts');
 const program = require('commander');
 const { name, description, version } = require('./package.json');
 
@@ -18,6 +19,30 @@ program
   .version(version)
   .description(description)
   .usage('<command> [args]');
+
+program
+  .command('clear')
+  .description('')
+  .action(async () => {
+    const desktopDirectory = getDesktopDirectory();
+
+    if (isDirectoryEmpty(desktopDirectory)) {
+      shell.echo('Cannot clear empty desktop');
+      shell.exit(1);
+    }
+
+    const response = await prompts({
+      type: 'confirm',
+      name: 'value',
+      message: 'Are you sure you want to delete all desktop contents?',
+      initial: false,
+    });
+
+    if (response.value) {
+      shell.rm('-rf', [desktopDirectory, '*'].join('/'));
+      shell.echo('Cleared desktop contents');
+    }
+  });
 
 program
   .command('stash')
