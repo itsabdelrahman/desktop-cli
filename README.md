@@ -14,6 +14,10 @@
 ❯ # TODO
 ```
 
+## Thanks
+
+* Inspired by [Dan Abramov](https://twitter.com/dan_abramov/status/958378195052630016)
+
 ## License
 
 MIT
