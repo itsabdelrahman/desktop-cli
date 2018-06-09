@@ -15,6 +15,8 @@ const getDirectoryFilesCount = path => shell.ls(path).length;
 const isDirectoryEmpty = path => getDirectoryFilesCount(path) === 0;
 const constructStashDirectory = () =>
   [getRepositoryPath(), getTimestamp()].join('/');
+const ifElse = (ifCondition, thenValue, elseValue) =>
+  ifCondition ? thenValue : elseValue;
 
 program
   .version(version)
@@ -46,7 +48,7 @@ program
       shell.echo(
         desktopFilesCount +
           ' Desktop file' +
-          (desktopFilesCount === 1 ? '' : 's') +
+          ifElse(desktopFilesCount === 1, '', 's') +
           ' removed',
       );
     }
