@@ -11,7 +11,8 @@ const getTimestamp = () => Math.round(new Date() / 1000);
 const getHomeDirectory = () => os.homedir();
 const getDesktopDirectory = () => [getHomeDirectory(), 'Desktop'].join('/');
 const getRepositoryPath = () => [getHomeDirectory(), name].join('/');
-const isDirectoryEmpty = path => shell.ls(path).length === 0;
+const getDirectoryFilesCount = path => shell.ls(path).length;
+const isDirectoryEmpty = path => getDirectoryFilesCount(path) === 0;
 const constructStashDirectory = () =>
   [getRepositoryPath(), getTimestamp()].join('/');
 
@@ -35,12 +36,19 @@ program
       type: 'confirm',
       name: 'value',
       message: 'Are you sure you want to remove all Desktop files?',
-      initial: false,
+      initial: true,
     });
 
     if (response.value) {
+      const desktopFilesCount = getDirectoryFilesCount(desktopDirectory);
+
       shell.rm('-rf', [desktopDirectory, '*'].join('/'));
-      shell.echo('Cleared Desktop contents');
+      shell.echo(
+        desktopFilesCount +
+          ' Desktop file' +
+          (desktopFilesCount === 1 ? '' : 's') +
+          ' removed',
+      );
     }
   });
 
