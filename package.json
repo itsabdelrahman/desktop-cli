@@ -18,6 +18,9 @@
     "eslint-config-airbnb-base": "12.1.0",
     "eslint-plugin-import": "2.12.0"
   },
+  "engines": {
+    "node": ">= 8.11.2"
+  },
   "homepage": "https://github.com/ar-maged/desktop-cli#readme",
   "repository": {
     "type": "git",
