@@ -30,6 +30,10 @@
 ❯ desktop-cli backup [id]         # Create Desktop backup
 ```
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/11808903/41645308-e1b2d9cc-7470-11e8-98cc-4e1d93fe0211.gif" style="border-radius: 8px"/>
+</p>
+
 #### Restore
 
 ```bash
