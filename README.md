@@ -40,6 +40,10 @@
 ❯ desktop-cli restore [id]        # Restore Desktop backup
 ```
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/11808903/41646871-27f13376-7475-11e8-9639-87b728cc80b5.gif" style="border-radius: 8px"/>
+</p>
+
 ## Thanks
 
 * Inspired by [Dan Abramov](https://twitter.com/dan_abramov/status/958378195052630016)
