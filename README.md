@@ -21,7 +21,7 @@
 ```
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/11808903/41643935-f971b08c-746c-11e8-8310-0bc0792d02ec.gif" style="border-radius: 8px"/>
+  <img src="https://user-images.githubusercontent.com/11808903/41644846-9595d02c-746f-11e8-949c-3f07e10c4fd2.gif" style="border-radius: 8px"/>
 </p>
 
 #### Backup
