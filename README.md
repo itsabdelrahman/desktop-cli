@@ -20,9 +20,7 @@
 ❯ desktop-cli clean               # Remove all Desktop files
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/11808903/41640898-b20644f0-7463-11e8-8b9b-9db7276cea7a.gif" style="border-radius: 8px"/>
-</p>
+![clean](https://user-images.githubusercontent.com/11808903/41643935-f971b08c-746c-11e8-8310-0bc0792d02ec.gif)
 
 #### Backup
 
