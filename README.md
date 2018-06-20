@@ -20,17 +20,29 @@
 ❯ desktop-cli clean               # Remove all Desktop files
 ```
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/11808903/41644846-9595d02c-746f-11e8-949c-3f07e10c4fd2.gif" style="border-radius: 8px"/>
+</p>
+
 #### Backup
 
 ```bash
 ❯ desktop-cli backup [id]         # Create Desktop backup
 ```
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/11808903/41645308-e1b2d9cc-7470-11e8-98cc-4e1d93fe0211.gif" style="border-radius: 8px"/>
+</p>
+
 #### Restore
 
 ```bash
 ❯ desktop-cli restore [id]        # Restore Desktop backup
 ```
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/11808903/41646871-27f13376-7475-11e8-9639-87b728cc80b5.gif" style="border-radius: 8px"/>
+</p>
 
 ## Thanks
 
